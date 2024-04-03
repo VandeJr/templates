@@ -1,0 +1,76 @@
+<div class="container m-auto" id="entities_page">
+  <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md">
+    <div class="px-6 py-4">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Sistema</h2>
+      <form>
+        <div class="mb-4">
+          <label for="nome" class="block text-gray-700 text-sm font-bold mb-2">Nome<span
+            class="text-red-500">*</span></label>
+          <input type="text" id="name" name="name" value="{{edit.name}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                 required>
+        </div>
+        <div class="mb-4">
+          <label for="descricao" class="block text-gray-700 text-sm font-bold mb-2">Descrição</label>
+          <input type="text" id="description" name="description" maxlength="255" value="{{edit.description}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="applicationSelect" class="block text-gray-700 text-sm font-bold mb-2">Sistema</label>
+          <select id="applicationSelect" name="applicationId"
+                  class="block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-blue-500">
+            {{#each applications as |app|}}
+              <option value="{{app.id}}">{{app.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="p-4 border rounded-md">
+          <h2 class="text-lg font-bold mb-4">Cadastrar Colunas</h2>
+
+          <!-- Inputs para cadastrar uma coluna -->
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <label for="nome" class="w-24">Nome:</label>
+              <input type="text" id="nome" name="nome" class="border border-gray-300 rounded-md px-2 py-1 w-1/2"
+                     maxlength="50" required>
+            </div>
+            <div class="flex items-center space-x-2">
+              <label for="descricao" class="w-24">Descrição:</label>
+              <input type="text" id="descricao" name="descricao"
+                     class="border border-gray-300 rounded-md px-2 py-1 w-1/2" maxlength="255">
+            </div>
+            <div class="flex items-center space-x-2">
+              <label class="w-24">Pode ser nula:</label>
+              <input type="checkbox" id="nullable" name="nullable" class="border border-gray-300 rounded-md px-2 py-1">
+            </div>
+            <div class="flex items-center space-x-2">
+              <label class="w-24">Chave Primária:</label>
+              <input type="checkbox" id="isPK" name="isPK" class="border border-gray-300 rounded-md px-2 py-1">
+            </div>
+            <div class="flex items-center space-x-2">
+              <label class="w-24">Auto Incremento:</label>
+              <input type="checkbox" id="isAi" name="isAi" class="border border-gray-300 rounded-md px-2 py-1">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Relações</label>
+        </div>
+
+        <div class="text-right">
+          <button type="reset"{{#if isEdit}}hx-put="/entities/{{edit.id}}" {{else}}hx-post="/entities"{{/if}}
+                  hx-target="#entities_page" hx-swap="outerHTML"
+                  class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+            Salvar
+          </button>
+          <button type="button" hx-get="/entities" hx-target="#entities_page" hx-swap="outerHTML"
+                  class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 hover:text-gray-900 focus:outline-none focus:bg-gray-400">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

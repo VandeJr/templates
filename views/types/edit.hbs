@@ -1,0 +1,46 @@
+<div class="container m-auto" id="types_page">
+  <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md">
+    <div class="px-6 py-4">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Tipos</h2>
+      <form>
+        <div class="mb-4">
+          <label for="nome" class="block text-gray-700 text-sm font-bold mb-2">Nome <span class="text-red-500">*</span></label>
+          <input type="text" id="name" name="name" value="{{edit.name}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                 required>
+        </div>
+        <div class="mb-4">
+          <label for="descricao" class="block text-gray-700 text-sm font-bold mb-2">Descrição</label>
+          <input type="text" id="description" name="description" maxlength="255" value="{{edit.description}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="backEnd" class="block text-gray-700 text-sm font-bold mb-2">Back-End</label>
+          <input type="text" id="backEnd" name="backEnd" maxlength="50" value="{{edit.backEnd}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="frontEnd" class="block text-gray-700 text-sm font-bold mb-2">Front-End</label>
+          <input type="text" id="frontEnd" name="frontEnd" maxlength="50" value="{{edit.frontEnd}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="database" class="block text-gray-700 text-sm font-bold mb-2">Database</label>
+          <input type="text" id="database" name="database" maxlength="50" value="{{edit.database}}"
+                 class="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="text-right">
+          <button type="reset"{{#if isEdit}}hx-put="/types/{{edit.id}}" {{else}}hx-post="/types"{{/if}}
+                  hx-target="#types_page" hx-swap="outerHTML"
+                  class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+            Salvar
+          </button>
+          <button type="button" hx-get="/types" hx-target="#types_page" hx-swap="outerHTML"
+                  class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 hover:text-gray-900 focus:outline-none focus:bg-gray-400">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

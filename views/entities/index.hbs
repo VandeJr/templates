@@ -1,0 +1,43 @@
+<div class="container m-auto" id="entities_page">
+  <div class="bg-white rounded-lg overflow-hidden shadow-md">
+    <h1 class="text-2xl font-bold m-4">Entidades</h1>
+    <div class="px-6 py-4">
+      <button title="Criar" hx-get="/entities/edit/0" hx-target="#entities_page" hx-swap="outerHTML"
+              class="px-2 py-1 bg-blue-500 text-white rounded-md flex items-center space-x-1 focus:outline-none focus:bg-blue-600">
+        <span class="material-icons">add</span>
+        <span>Criar</span>
+      </button>
+      <div class="container mx-auto mt-4 overflow-auto-x">
+        <table class="table-auto w-full">
+          <thead>
+          <tr>
+            <th class="px-4 py-2">Nome</th>
+            <th class="px-4 py-2">Descrição</th>
+            <th class="px-4 py-2"></th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each entities as |entity|}}
+            <tr>
+              <td class="border px-4 py-2">{{entity.name}}</td>
+              <td class="border px-4 py-2">{{entity.description}}</td>
+              <td class="border px-4 py-2">
+                <div class="flex justify-evenly">
+                  <button hx-get="/entities/edit/{{app.id}}" hx-target="#entities_page" hx-swap="outerHTML"
+                          class="edit-button" title="Editar">
+                    <span class="material-icons">edit</span>
+                  </button>
+                  <button class="delete-button" title="Deletar" hx-delete="/entities/{{app.id}}"
+                          hx-target="#entities_page" hx-swap="outerHTML">
+                    <span class="material-icons">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
